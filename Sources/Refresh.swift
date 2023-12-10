@@ -253,6 +253,9 @@ extension Refresh: ObserverDelegate {
     
     func observerStateChanged(previous: Observer.ObserverState,
                               newState: Observer.ObserverState) {
+        if previous.size != newState.size {
+            view?.frame = viewFrame
+        }
         
         guard refreshState != .refreshing else {
             return
