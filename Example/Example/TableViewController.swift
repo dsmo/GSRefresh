@@ -31,6 +31,8 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.backgroundColor = .systemGray
+        
         let refreshView: CustomRefreshView
         let loadMoreView: CustomLoadMoreView
         
@@ -41,14 +43,14 @@ class TableViewController: UITableViewController {
             switch type {
             case .default:
                 let frame = CGRect(x: 0, y: 0, width: 300, height: 40)
-                refreshView = BasicDefaultView(frame: frame)
+                refreshView = RefreshView(frame: frame)
                 loadMoreView = BasicDefaultView(frame: frame)
             }
 
         }
         
         tableView.refresh.setup(view: refreshView) { [weak self] in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                 guard let this = self else { return }
                 
                 this.count = 30
